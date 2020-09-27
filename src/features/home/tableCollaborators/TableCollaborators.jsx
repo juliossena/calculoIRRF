@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { operations } from '../../../redux';
 import ModalConfirm from '../../../shared/components/modalConfirm/ModalConfirm';
 import { calcDiscountIRRF } from '../../../shared/functions/irrf';
 import ButtonImg from '../../../shared/components/buttonImg/ButtonImg';
@@ -15,9 +16,21 @@ import {
 } from './styles';
 
 const TableCollaborators = () => {
+  const dispatch = useDispatch();
   const [openModalConfirm, setOpenModalConfirm] = useState(false);
   const [collaboratorDelete, setCollaboratorDelete] = useState({});
   const collaborators = useSelector((state) => state.collaboratorsReducer.collaborators);
+  const deleteCollaborator = (collaborator) => dispatch(operations
+    .deleteCollaborator(collaborators, collaborator));
+
+  if (collaborators.length === 0) {
+    return null;
+  }
+
+  const handleDeleteCollaborator = () => {
+    setOpenModalConfirm(false);
+    deleteCollaborator(collaboratorDelete);
+  };
 
   const openConfirmDeleteCollaborator = (collaborator) => {
     setCollaboratorDelete(collaborator);
@@ -79,7 +92,7 @@ const TableCollaborators = () => {
       title="Confirmar a exclusão do funcionário?"
       message="O funcionário selecionado, será removido permanentemente. Essa ação é irreversível."
       onClickSecondary={() => setOpenModalConfirm(false)}
-      onClickPrimary={() => null}
+      onClickPrimary={handleDeleteCollaborator}
     />
   );
 
