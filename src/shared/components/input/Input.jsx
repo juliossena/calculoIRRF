@@ -1,25 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { H1 } from '../defaultComponents';
 import {
   Container,
   InputStyle,
   Title,
 } from './styles';
 
-const Input = ({ title, placeHolder }) => (
+const Input = ({
+  title,
+  placeHolder,
+  value,
+  onChange,
+}) => (
   <Container>
     {title !== '' && (
     <Title>
       {title}
     </Title>
     )}
-    <InputStyle placeholder={placeHolder} />
+    <InputStyle
+      value={value}
+      onChange={onChange}
+      placeholder={placeHolder}
+    />
   </Container>
 );
 
 Input.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   placeHolder: PropTypes.string,
 };
