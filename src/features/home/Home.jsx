@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
 
+import TableCollaborators from './tableCollaborators/TableCollaborators';
 import { Box, H1, Paragraph } from '../../shared/components/defaultComponents';
 import ButtonImg from '../../shared/components/buttonImg/ButtonImg';
 import {
@@ -12,9 +12,6 @@ import {
 
 const Home = () => {
   const history = useHistory();
-  const users = useSelector((state) => state.userReducer.users);
-
-  console.log(users);
 
   const handleOnClickRegister = () => {
     history.push('/register');
@@ -45,7 +42,7 @@ const Home = () => {
           style={{ position: 'absolute', right: 0 }}
         />
       </H1>
-
+      <TableCollaborators />
     </Box>
   );
 };

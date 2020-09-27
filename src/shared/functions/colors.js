@@ -1,7 +1,7 @@
 export const colors = {
   black: '#000',
   white: '#fff',
-  textColor: '#333333',
+  textColor: '#2e3338',
   textColorLight: '#6e6c7c',
   grey50: '#f4f4f5',
   grey100: '#eeeeee',
@@ -15,7 +15,7 @@ export const colors = {
   grey900: '#434155',
   error: '#E73A33',
   primary: '#0069d9;',
-  primaryLight: '#D7E9FB',
+  primaryLight: '#afd4fd',
   secondary: '#F27934',
 };
 

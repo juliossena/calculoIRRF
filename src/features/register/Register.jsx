@@ -12,12 +12,15 @@ import {
 
 const Register = () => {
   const dispatch = useDispatch();
-  const insertUser = (user) => dispatch(operations.insertUser(user));
+  const insertCollaborator = (collaborator) => dispatch(operations
+    .insertCollaborator(collaborator));
   const history = useHistory();
   const [dataRegister, setDataRegister] = useState({
-    name: '',
+    nome: '',
     cpf: '',
-    salary: 0,
+    salario: '',
+    desconto: '',
+    dependentes: 0,
   });
 
   const handleCancelRegister = () => {
@@ -25,7 +28,7 @@ const Register = () => {
   };
 
   const handleRegister = () => {
-    insertUser({ ...dataRegister });
+    insertCollaborator({ ...dataRegister });
     history.push('/');
   };
 
@@ -35,8 +38,8 @@ const Register = () => {
         Cadastrar funcionário
       </H1>
       <Input
-        value={dataRegister.name}
-        onChange={(x) => setDataRegister({ ...dataRegister, name: x.target.value })}
+        value={dataRegister.nome}
+        onChange={(x) => setDataRegister({ ...dataRegister, nome: x.target.value })}
         title="Nome do funcionário"
         placeHolder="Nome Completo"
       />
@@ -48,10 +51,22 @@ const Register = () => {
 
       />
       <Input
-        value={dataRegister.salary}
-        onChange={(x) => setDataRegister({ ...dataRegister, salary: x.target.value })}
+        value={dataRegister.salario}
+        onChange={(x) => setDataRegister({ ...dataRegister, salario: x.target.value })}
         title="Salário"
         placeHolder="0.000,00"
+      />
+      <Input
+        value={dataRegister.desconto}
+        onChange={(x) => setDataRegister({ ...dataRegister, desconto: x.target.value })}
+        title="Desconto"
+        placeHolder="000,00"
+      />
+      <Input
+        value={dataRegister.dependentes}
+        onChange={(x) => setDataRegister({ ...dataRegister, dependentes: x.target.value })}
+        title="Dependentes"
+        placeHolder="0"
       />
       <BoxButtons>
         <Button

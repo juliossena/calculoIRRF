@@ -1,12 +1,12 @@
-export const SET_USERS = 'users/SET_USERS';
-export const INSERT_USER = 'users/INSERT_USER';
+export const SET_USERS = 'collabortor/SET_USERS';
+export const INSERT_COLLABORATOR = 'collabortor/INSERT_COLLABORATOR';
 
-export const setUsers = (users) => ({
+export const setCollaborators = (collaborators) => ({
   type: SET_USERS,
-  payload: users,
+  payload: collaborators,
 });
 
-export const insertUser = (user) => ({
-  type: INSERT_USER,
-  payload: user,
+export const insertCollaborator = (collaborator) => ({
+  type: INSERT_COLLABORATOR,
+  payload: collaborator,
 });
