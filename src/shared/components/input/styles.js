@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+import { colors } from '../../functions/colors';
 import { H1 } from '../defaultComponents';
 
 export const Container = styled.div`
@@ -14,10 +16,10 @@ export const InputStyle = styled.input`
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
+    color: ${colors.primary};
+    background-color: ${(props) => (props.disabled ? colors.grey50 : colors.white)};
     background-clip: padding-box;
-    border: 1px solid #ced4da;
+    border: 1px solid ${colors.primaryLight};
     border-radius: .25rem;
 `;
 

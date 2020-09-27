@@ -19,6 +19,15 @@ export const H1 = styled.h1`
     position: relative;
 `;
 
+export const H2 = styled.h2`
+    color: ${colors.primaryLight};
+    font-size: 14px;
+    text-align: left;
+    position: relative;
+    padding: 8px 0px;
+    border-bottom: 1px solid ${colors.primaryLight};
+`;
+
 export const Paragraph = styled.p`
     margin: 16px auto;
     text-align: justify;

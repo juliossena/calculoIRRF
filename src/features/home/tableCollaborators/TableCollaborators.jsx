@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import ViewCollaborator from './viewCollaborator/ViewCollaborator';
 import { operations } from '../../../redux';
 import ModalConfirm from '../../../shared/components/modalConfirm/ModalConfirm';
 import { calcDiscountIRRF } from '../../../shared/functions/irrf';
@@ -18,6 +19,8 @@ import {
 const TableCollaborators = () => {
   const dispatch = useDispatch();
   const [openModalConfirm, setOpenModalConfirm] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [viewCollaborator, setViewCollaborator] = useState(null);
   const [collaboratorDelete, setCollaboratorDelete] = useState({});
   const collaborators = useSelector((state) => state.collaboratorsReducer.collaborators);
   const deleteCollaborator = (collaborator) => dispatch(operations
@@ -37,8 +40,8 @@ const TableCollaborators = () => {
     setOpenModalConfirm(true);
   };
 
-  const renderColumnCollaborators = (collaborator) => (
-    <LineTable>
+  const renderRowCollaborators = (collaborator) => (
+    <LineTable key={collaborator.cpf}>
       <ColumnTable>
         {collaborator.nome}
       </ColumnTable>
@@ -67,12 +70,20 @@ const TableCollaborators = () => {
           height="16px"
           source="img/eye-solid.svg"
           style={{ margin: 4 }}
+          onClick={() => {
+            setViewCollaborator({ ...collaborator });
+            setIsEdit(false);
+          }}
         />
         <ButtonImg
           width="16px"
           height="16px"
           source="img/edit-solid.svg"
           style={{ margin: 4 }}
+          onClick={() => {
+            setViewCollaborator({ ...collaborator });
+            setIsEdit(true);
+          }}
         />
         <ButtonImg
           onClick={() => openConfirmDeleteCollaborator(collaborator)}
@@ -98,6 +109,7 @@ const TableCollaborators = () => {
 
   return (
     <>
+      <ViewCollaborator collaborator={viewCollaborator} isEdit={isEdit} />
       {renderModalConfirmDelete()}
       <Table>
         <HeaderTable>
@@ -124,7 +136,7 @@ const TableCollaborators = () => {
           </LineTable>
         </HeaderTable>
         <BodyTable>
-          {collaborators.map((collaborator) => renderColumnCollaborators(collaborator))}
+          {collaborators.map((collaborator) => renderRowCollaborators(collaborator))}
         </BodyTable>
       </Table>
     </>

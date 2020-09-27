@@ -12,6 +12,7 @@ const Input = ({
   placeHolder,
   value,
   onChange,
+  disabled,
 }) => (
   <Container>
     {title !== '' && (
@@ -23,6 +24,7 @@ const Input = ({
       value={value}
       onChange={onChange}
       placeholder={placeHolder}
+      disabled={disabled}
     />
   </Container>
 );
@@ -32,11 +34,13 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   placeHolder: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 Input.defaultProps = {
   title: '',
   placeHolder: '',
+  disabled: false,
 };
 
 export default Input;
