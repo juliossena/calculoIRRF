@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import ModalConfirm from '../../../shared/components/modalConfirm/ModalConfirm';
 import { calcDiscountIRRF } from '../../../shared/functions/irrf';
 import ButtonImg from '../../../shared/components/buttonImg/ButtonImg';
 import { doubleToReal } from '../../../shared/functions/money';
@@ -14,7 +15,14 @@ import {
 } from './styles';
 
 const TableCollaborators = () => {
+  const [openModalConfirm, setOpenModalConfirm] = useState(false);
+  const [collaboratorDelete, setCollaboratorDelete] = useState({});
   const collaborators = useSelector((state) => state.collaboratorsReducer.collaborators);
+
+  const openConfirmDeleteCollaborator = (collaborator) => {
+    setCollaboratorDelete(collaborator);
+    setOpenModalConfirm(true);
+  };
 
   const renderColumnCollaborators = (collaborator) => (
     <LineTable>
@@ -54,6 +62,7 @@ const TableCollaborators = () => {
           style={{ margin: 4 }}
         />
         <ButtonImg
+          onClick={() => openConfirmDeleteCollaborator(collaborator)}
           width="16px"
           height="16px"
           source="img/trash-solid.svg"
@@ -63,35 +72,49 @@ const TableCollaborators = () => {
     </LineTable>
   );
 
+  const renderModalConfirmDelete = () => (
+    <ModalConfirm
+      open={openModalConfirm}
+      onClose={() => setOpenModalConfirm(false)}
+      title="Confirmar a exclusão do funcionário?"
+      message="O funcionário selecionado, será removido permanentemente. Essa ação é irreversível."
+      onClickSecondary={() => setOpenModalConfirm(false)}
+      onClickPrimary={() => null}
+    />
+  );
+
   return (
-    <Table>
-      <HeaderTable>
-        <LineTable>
-          <ColumnTableHeader>
-            Nome
-          </ColumnTableHeader>
-          <ColumnTableHeader>
-            CPF
-          </ColumnTableHeader>
-          <ColumnTableHeader>
-            Salário
-          </ColumnTableHeader>
-          <ColumnTableHeader>
-            Desconto
-          </ColumnTableHeader>
-          <ColumnTableHeader>
-            Dependentes
-          </ColumnTableHeader>
-          <ColumnTableHeader>
-            Desconto IRRF
-          </ColumnTableHeader>
-          <ColumnTableHeader />
-        </LineTable>
-      </HeaderTable>
-      <BodyTable>
-        {collaborators.map((collaborator) => renderColumnCollaborators(collaborator))}
-      </BodyTable>
-    </Table>
+    <>
+      {renderModalConfirmDelete()}
+      <Table>
+        <HeaderTable>
+          <LineTable>
+            <ColumnTableHeader>
+              Nome
+            </ColumnTableHeader>
+            <ColumnTableHeader>
+              CPF
+            </ColumnTableHeader>
+            <ColumnTableHeader>
+              Salário
+            </ColumnTableHeader>
+            <ColumnTableHeader>
+              Desconto
+            </ColumnTableHeader>
+            <ColumnTableHeader>
+              Dependentes
+            </ColumnTableHeader>
+            <ColumnTableHeader>
+              Desconto IRRF
+            </ColumnTableHeader>
+            <ColumnTableHeader />
+          </LineTable>
+        </HeaderTable>
+        <BodyTable>
+          {collaborators.map((collaborator) => renderColumnCollaborators(collaborator))}
+        </BodyTable>
+      </Table>
+    </>
   );
 };
 

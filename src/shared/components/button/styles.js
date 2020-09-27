@@ -13,6 +13,8 @@ export const Container = styled.button`
     width: 100%;
     background-color: ${(props) => (props.type === 'primary' ? colors.primary : colors.white)};
     color: ${(props) => (props.type === 'primary' ? colors.white : colors.primary)};
-    padding: 8px;
+    padding: 8px 16px;
     border-radius: 4px;
 `;
+
+export default Container;

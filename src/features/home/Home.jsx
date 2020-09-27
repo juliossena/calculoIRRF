@@ -4,11 +4,6 @@ import { useHistory } from 'react-router';
 import TableCollaborators from './tableCollaborators/TableCollaborators';
 import { Box, H1, Paragraph } from '../../shared/components/defaultComponents';
 import ButtonImg from '../../shared/components/buttonImg/ButtonImg';
-import {
-  Container,
-  Title,
-  Text,
-} from './styles';
 
 const Home = () => {
   const history = useHistory();
