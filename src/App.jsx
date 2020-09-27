@@ -3,7 +3,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import store from './store';
-import Cadastro from './features/cadastro';
+import Register from './features/register';
+import Home from './features/home';
 import Header from './shared/components/header/Header';
 
 import './App.css';
@@ -11,22 +12,22 @@ import './App.css';
 const App = () => (
   <Provider store={store}>
     <Header />
-    <BrowserRouter>
-      <div className="App">
+    <main>
+      <BrowserRouter>
         <Switch>
           <Route
             exact
-            path="/cadastro"
-            component={Cadastro}
+            path="/register"
+            component={Register}
           />
           <Route
             exact
             path="/"
-            component={Cadastro}
+            component={Home}
           />
         </Switch>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </main>
   </Provider>
 );
 
