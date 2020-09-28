@@ -24,6 +24,8 @@ const Modal = ({ open, children, onClose }) => {
 
 Modal.propTypes = {
   open: PropTypes.bool.isRequired,
+  children: PropTypes.instanceOf(Object).isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

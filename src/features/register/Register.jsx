@@ -54,13 +54,15 @@ const Register = () => {
         value={dataRegister.salario}
         onChange={(x) => setDataRegister({ ...dataRegister, salario: x.target.value })}
         title="Salário"
-        placeHolder="0.000,00"
+        placeHolder="000.00"
+        isFloat
       />
       <Input
         value={dataRegister.desconto}
         onChange={(x) => setDataRegister({ ...dataRegister, desconto: x.target.value })}
         title="Desconto"
-        placeHolder="000,00"
+        placeHolder="000.00"
+        isFloat
       />
       <Input
         value={dataRegister.dependentes}

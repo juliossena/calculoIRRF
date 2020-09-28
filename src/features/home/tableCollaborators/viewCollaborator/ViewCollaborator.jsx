@@ -29,7 +29,7 @@ const ViewCollaborator = ({
       setCollaboratorState({ ...collaborator });
       setEdit(isEdit);
     }
-  }, [collaborator]);
+  }, [collaborator, isEdit]);
 
   if (!collaborator || !openModal) {
     return null;
@@ -85,8 +85,9 @@ const ViewCollaborator = ({
           salario: x.target.value,
         })}
         title="Salário"
-        placeHolder="0.000,00"
+        placeHolder="000.00"
         disabled={!edit}
+        isFloat
       />
       <Input
         value={collaboratorState.desconto}
@@ -95,8 +96,9 @@ const ViewCollaborator = ({
           desconto: x.target.value,
         })}
         title="Desconto"
-        placeHolder="000,00"
+        placeHolder="000.00"
         disabled={!edit}
+        isFloat
       />
       <Input
         value={collaboratorState.dependentes}

@@ -13,21 +13,32 @@ const Input = ({
   value,
   onChange,
   disabled,
-}) => (
-  <Container>
-    {title !== '' && (
-    <Title>
-      {title}
-    </Title>
-    )}
-    <InputStyle
-      value={value}
-      onChange={onChange}
-      placeholder={placeHolder}
-      disabled={disabled}
-    />
-  </Container>
-);
+  isFloat,
+}) => {
+  const handleOnChange = (x) => {
+    onChange({
+      target: {
+        value: isFloat ? x.target.value.replace(',', '.') : x.target.value,
+      },
+    });
+  };
+
+  return (
+    <Container>
+      {title !== '' && (
+      <Title>
+        {title}
+      </Title>
+      )}
+      <InputStyle
+        value={value}
+        onChange={handleOnChange}
+        placeholder={placeHolder}
+        disabled={disabled}
+      />
+    </Container>
+  );
+};
 
 Input.propTypes = {
   value: PropTypes.string.isRequired,
@@ -35,12 +46,14 @@ Input.propTypes = {
   title: PropTypes.string,
   placeHolder: PropTypes.string,
   disabled: PropTypes.bool,
+  isFloat: PropTypes.bool,
 };
 
 Input.defaultProps = {
   title: '',
   placeHolder: '',
   disabled: false,
+  isFloat: false,
 };
 
 export default Input;
